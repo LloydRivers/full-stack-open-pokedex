@@ -6,6 +6,7 @@ import ErrorMessage from "./ErrorMessage";
 import PokemonPage from "./PokemonPage";
 import PokemonList from "./PokemonList";
 
+// Map the results from the API to the format we need.
 const mapResults = ({ results }) =>
   results.map(({ url, name }) => ({
     url,
