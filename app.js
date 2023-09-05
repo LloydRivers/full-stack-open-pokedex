@@ -6,15 +6,15 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.static("dist"));
 
-app.get('/health', (req, res) => {
+app.get("/health", (req, res) => {
   if (res.statusCode !== 200) {
-    res.status(500).send('error');
+    res.status(500).send("error");
   } else {
     res.status(200).send();
   }
 });
 
-app.get('/version', (req, res) => {
+app.get("/version", (req, res) => {
   counter++;
   res.send(`Version ${counter}`);
 });
