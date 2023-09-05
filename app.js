@@ -14,10 +14,9 @@ app.get("/health", (req, res) => {
   }
 });
 
-app.get("/version", (req, res) => {
-  counter++;
-  res.send(`Version ${counter}`);
-});
+app.get('/version', (req, res) => {
+  res.send('1') // change this string to ensure a new version deployed
+})
 
 app.listen(PORT, () => {
   /* eslint-disable no-console */
