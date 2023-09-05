@@ -28,7 +28,7 @@ primary_region = "lhr"
     method = "get"
     path = "/health"
     protocol = "http"
-    timeout = --wait-timeout
+    timeout = 100000
     tls_skip_verify = false
 
 
