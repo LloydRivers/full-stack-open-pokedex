@@ -28,8 +28,9 @@ primary_region = "lhr"
     method = "get"
     path = "/health"
     protocol = "http"
-    timeout = 100000
+    timeout = 2000
     tls_skip_verify = false
+    port = 5000
 
 
 
