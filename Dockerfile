@@ -12,17 +12,16 @@ WORKDIR /app
 # Set production environment
 ENV NODE_ENV="production"
 
-
-# Throw-away build stage to reduce size of final image
+# Throw-away build stage to reduce the size of the final image
 FROM base as build
 
 # Install packages needed to build node modules
 RUN apt-get update -qq && \
     apt-get install -y build-essential pkg-config python
 
-# Install node modules
+# Install node modules with dev dependencies (for building)
 COPY --link package-lock.json package.json ./
-RUN npm ci --include=dev
+RUN npm ci
 
 # Copy application code
 COPY --link . .
@@ -30,15 +29,14 @@ COPY --link . .
 # Build application
 RUN npm run build
 
-# Remove development dependencies
-RUN npm prune --omit=dev
-
-
-# Final stage for app image
+# Final production stage
 FROM base
 
-# Copy built application
+# Copy built application from the build stage
 COPY --from=build /app /app
+
+# Install only production dependencies (without dev dependencies)
+RUN npm ci --only=production
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 5000

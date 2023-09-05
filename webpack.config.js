@@ -35,7 +35,7 @@ module.exports = {
     extensions: ["*", ".js", ".jsx"],
   },
   devServer: {
-    contentBase: path.join(__dirname, "dist"),
+    historyApiFallback: true,
   },
   plugins: [
     new HtmlWebPackPlugin({
